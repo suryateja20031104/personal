@@ -25,6 +25,17 @@ const initializeDBAndServer = async () => {
   }
 };
 initializeDBAndServer();
+
+app.get("/loginr/", async (request, response) => {
+  const getBooksQuery = `
+    SELECT
+      *
+    FROM
+      per;`;
+  const booksArray = await db.all(getBooksQuery);
+  response.send(booksArray);
+});
+
 app.post("/login/", async (request, response) => {
   const bookDetails = request.body;
   const { username, password } = bookDetails;
